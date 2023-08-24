@@ -1,0 +1,10 @@
+mat-toolbar {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.mx{
+  margin: 0 0.5rem ;
+}

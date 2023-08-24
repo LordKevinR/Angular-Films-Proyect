@@ -1,0 +1,57 @@
+<div class="container">
+  <form (submit)="saveChanges()" [formGroup]="form" >
+
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input formControlName="title" matInput />
+      <mat-error>Field Title is required</mat-error>
+    </mat-form-field>
+
+    <h4>Select Actors</h4>
+
+    <h4>Select Genres</h4>
+    <app-multiple-selector
+      [noSelected]="noSelectedGenres"
+      [selected]="selectedGenres"
+    ></app-multiple-selector>
+
+    <h4>Select Theaters</h4>
+    <app-multiple-selector
+      [noSelected]="noSelectedTheaters"
+      [selected]="selectedTheaters"
+    ></app-multiple-selector>
+
+    <div class="m">
+      <mat-checkbox formControlName="inTheaters">In Theaters</mat-checkbox>
+    </div>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Release Data</mat-label>
+      <input formControlName="releaseData" matInput [matDatepicker]="picker"/>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Trailer</mat-label>
+      <input formControlName="trailer" matInput />
+    </mat-form-field>
+
+    <h4>Select Poster</h4>
+    <app-input-img [actualImageURL]="model?.poster" (selectedFile)="selectedFile($event)"></app-input-img>
+
+    <h4>Film Summary</h4>
+    <app-input-markdown [markdownContent]="model?.summary" (changeMarkdown)="changeMarkdown($event)" [placeHolderTextarea]="'Summary'"></app-input-markdown>
+
+    <div class="center buttons">
+      <button mat-flat-button color="primary" [disabled]="form.invalid">
+        Save Changes
+      </button>
+
+      <a mat-stroked-button routerLink="/">
+        Cancel
+      </a>
+    </div>
+
+  </form>
+</div>

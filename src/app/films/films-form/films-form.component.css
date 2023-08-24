@@ -1,0 +1,39 @@
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 50rem;
+}
+
+form{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+mat-form-field {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.center {
+  display: flex;
+  margin: 0 auto;
+}
+
+.buttons {
+  margin-top: 2rem;
+  margin-bottom: 15rem;
+  gap: 1rem;
+}
+
+.m{
+  margin-bottom: 1rem;
+}
+
+h4 {
+  text-align: center;
+  margin: 2rem 0;
+  font-size: 1.3rem;
+}

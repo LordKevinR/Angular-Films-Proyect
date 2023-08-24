@@ -1,0 +1,31 @@
+.container {
+  align-items: center;
+  height: 50vh;
+}
+
+form{
+  width: 90%;
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
+mat-form-field {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.max-rem {
+  max-width: 15rem;
+  margin-left: 1rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.buttons{
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  padding-bottom: 5rem;
+}

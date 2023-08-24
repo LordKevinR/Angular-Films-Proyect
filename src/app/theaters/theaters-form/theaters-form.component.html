@@ -1,0 +1,30 @@
+<div class="container">
+  <form (submit)="OnSubmit()" [formGroup]="form">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input formControlName="name" matInput/>
+      <mat-error *ngIf="form.invalid">Name field is required</mat-error>
+    </mat-form-field>
+
+    <h4>Select the theater on the map</h4>
+
+    <div>
+      <app-map
+      (selectedLocation)="selectedLocation($event)"
+      [initialsLocations]="initialLocation"
+      ></app-map>
+    </div>
+
+    <div class="center buttons">
+      <button mat-flat-button color="primary" [disabled]="form.invalid">
+        Save Changes
+      </button>
+
+      <a mat-stroked-button routerLink="/theaters">
+        Cancel
+      </a>
+    </div>
+
+  </form>
+</div>

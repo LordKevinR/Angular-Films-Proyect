@@ -1,0 +1,38 @@
+.content{
+  display: flex;
+  justify-content: center;
+}
+
+ul {
+  height: 200px;
+  overflow-y: auto;
+  list-style: none;
+  width: 170px;
+  padding: 0;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+}
+
+ul li {
+  cursor: pointer;
+  padding: 2px 10px;
+  font-size: 14px;
+  color: white;
+}
+
+ul li:hover{
+  background-color: #08c;
+}
+
+.buttons{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5px;
+}
+
+button {
+  margin: 5px;
+  color: white;
+  background-color: #25365c;
+}
