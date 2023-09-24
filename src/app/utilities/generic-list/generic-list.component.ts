@@ -9,6 +9,7 @@ export class GenericListComponent implements OnInit {
 
   @Input()
   list;
+
   constructor() { }
 
   ngOnInit(): void {

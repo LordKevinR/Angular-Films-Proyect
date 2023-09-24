@@ -17,10 +17,12 @@ export class GenreFormComponent implements OnInit {
   @Input()
   model: genreCreationDTO;
 
+  @Input()
+  errors: string[] = [];
 
 
   @Output()
-  submit: EventEmitter<genreCreationDTO> = new EventEmitter<genreCreationDTO>();
+  onSubmit: EventEmitter<genreCreationDTO> = new EventEmitter<genreCreationDTO>();
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -35,7 +37,7 @@ export class GenreFormComponent implements OnInit {
   }
 
   saveChanges() {
-    this.submit.emit(this.form.value);
+    this.onSubmit.emit(this.form.value);
   }
 
   getNameFieldError() {

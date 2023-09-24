@@ -1,0 +1,23 @@
+form {
+  width: 100%;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+img {
+  vertical-align: middle;
+  margin-right: 8px;
+  width: 35px;
+  height: 45px;
+}
+
+mat-icon{
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+mat-icon:hover{
+  transform: scale(1.2);
+}

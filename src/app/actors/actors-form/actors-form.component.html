@@ -1,4 +1,6 @@
 <div class="container">
+  <app-show-errors [errors]="errors"></app-show-errors>
+
   <form (submit)="onSubmit()" [formGroup]="form">
 
     <div class="flex">
@@ -18,7 +20,7 @@
 
     <app-input-img [actualImageURL]="model?.photo" (selectedFile)="selectedFile($event)"></app-input-img>
 
-    <app-input-markdown [placeHolderTextarea]="'Biography'" (changeMarkdown)="markdownChange($event)"></app-input-markdown>
+    <app-input-markdown [markdownContent]="model?.biography" [placeHolderTextarea]="'Biography'" (changeMarkdown)="markdownChange($event)"></app-input-markdown>
 
     <div class="buttons">
       <button mat-flat-button color="primary" [disabled]="form.invalid">Save Changes</button>

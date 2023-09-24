@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { capitalFirstLetter } from 'src/app/utilities/validations/capitalFirstLetter';
 import { genreCreationDTO } from '../genres';
+import { GenresService } from '../genres.service';
+import { parsearErrorsAPI } from 'src/app/utilities/helpers';
 
 @Component({
   selector: 'app-genres-create',
@@ -12,11 +14,13 @@ import { genreCreationDTO } from '../genres';
 
 export class GenresCreateComponent {
 
-  constructor(private router: Router, ) { }
+  errors: string[] = [];
+
+  constructor(private router: Router, private genresService: GenresService ) { }
 
   saveChanges(genre: genreCreationDTO) {
-    //save changes
-    console.log(genre);
-    this.router.navigate(['/genres']);
+    this.genresService.create(genre).subscribe( () => {
+      this.router.navigate(['/genres'])
+    }, error => this.errors = parsearErrorsAPI(error));
   }
 }

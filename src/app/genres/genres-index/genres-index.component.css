@@ -1,0 +1,30 @@
+h2{
+  text-align: center;
+  margin: 2rem;
+}
+
+.button-create{
+  display: flex;
+  margin: 2rem auto;
+
+}
+
+.table-index{
+  max-width: 80rem;
+  width: 100%;
+  margin: 0 auto;
+}
+
+th{
+  font-weight: bold;
+  font-size: 1rem;
+  padding-left: 10rem;
+}
+
+td{
+  padding-left: 10rem;
+}
+
+a{
+  margin-right: 1rem;
+}

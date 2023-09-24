@@ -1,4 +1,8 @@
+
 <div class="container">
+
+  <app-show-errors [errors]="errors"></app-show-errors>
+
   <form (submit)="saveChanges()" [formGroup]="form">
 
     <mat-form-field appearance="outline">

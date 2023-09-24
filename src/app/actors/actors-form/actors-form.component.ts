@@ -14,10 +14,15 @@ export class ActorsFormComponent implements OnInit {
   form: FormGroup;
 
   @Input()
+  errors: string[] = [];
+
+  @Input()
   model: actorDTO;
 
   @Output()
   OnSubmit: EventEmitter<actorCreationDTO> = new EventEmitter<actorCreationDTO>();
+
+  changedImage: boolean = false;
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -34,6 +39,9 @@ export class ActorsFormComponent implements OnInit {
   }
 
   onSubmit() {
+    if (!this.changedImage){
+      this.form.patchValue({'photo': null})
+    }
     this.OnSubmit.emit(this.form.value);
   }
 
@@ -42,6 +50,7 @@ export class ActorsFormComponent implements OnInit {
   }
 
   selectedFile(file) {
+    this.changedImage = true;
     this.form.get('photo').setValue(file);
   }
 
