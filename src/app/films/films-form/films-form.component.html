@@ -1,4 +1,7 @@
 <div class="container">
+
+  <app-show-errors [errors]="errors"></app-show-errors>
+
   <form (submit)="saveChanges()" [formGroup]="form" >
 
     <mat-form-field appearance="outline">
@@ -8,7 +11,9 @@
     </mat-form-field>
 
     <h4>Select Actors</h4>
-      <app-actors-autocomplete></app-actors-autocomplete>
+      <app-actors-autocomplete
+      [selectedActors]="selectedActors"
+      ></app-actors-autocomplete>
 
     <h4>Select Genres</h4>
     <app-multiple-selector

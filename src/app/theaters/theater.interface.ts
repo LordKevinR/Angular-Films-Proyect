@@ -1,11 +1,12 @@
 export interface theaterCreationDTO {
   name: string;
-  latituden: number;
-  longituden: number;
+  latitude: number;
+  longitude: number;
 }
 
 export interface theaterDTO {
+  id: number;
   name: string;
-  latituden: number;
-  longituden: number;
+  latitude: number;
+  longitude: number;
 }

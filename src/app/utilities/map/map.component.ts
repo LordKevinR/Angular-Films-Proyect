@@ -17,7 +17,7 @@ export class MapComponent implements OnInit {
   selectedLocation: EventEmitter<ILocation> = new EventEmitter<ILocation>();
 
   ngOnInit(): void {
-    this.layers = this.initialsLocations.map(value => marker([value.latituden, value.longituden]));
+    this.layers = this.initialsLocations.map(value => marker([value.latitude, value.longitude]));
   }
 
   options = {
@@ -31,12 +31,12 @@ export class MapComponent implements OnInit {
   layers: Marker<any>[] = [];
 
   handleClick(event: LeafletMouseEvent){
-    const latituden = event.latlng.lat;
-    const longituden = event.latlng.lng;
-    console.log({latituden, longituden});
+    const latitude = event.latlng.lat;
+    const longitude = event.latlng.lng;
+    console.log({latitude, longitude});
 
     this.layers = [];
-    this.layers.push(marker([latituden, longituden],{
+    this.layers.push(marker([latitude, longitude],{
       icon: icon({
         iconSize: [25, 41],
         iconAnchor: [13, 41],
@@ -45,6 +45,6 @@ export class MapComponent implements OnInit {
         shadowUrl: 'assets/marker-shadow.png'
       })
     }));
-    this.selectedLocation.emit({latituden, longituden});
+    this.selectedLocation.emit({latitude, longitude});
   }
 }

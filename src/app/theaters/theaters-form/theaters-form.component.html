@@ -1,4 +1,7 @@
 <div class="container">
+
+  <app-show-errors [errors]="errors"></app-show-errors>
+
   <form (submit)="OnSubmit()" [formGroup]="form">
 
     <mat-form-field appearance="outline">

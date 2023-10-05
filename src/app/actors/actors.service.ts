@@ -1,7 +1,7 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
-import { actorCreationDTO, actorDTO } from './actor';
+import { actorCreationDTO, actorDTO, actorFilmDTO } from './actor';
 import { formatDate } from '../utilities/helpers';
 import { Observable } from 'rxjs';
 
@@ -25,15 +25,21 @@ export class ActorsService {
     return this.http.get<actorDTO>(this.apiUrl + '/' + id);
   }
 
-    public create(actor: actorCreationDTO){
-      const formData = this.buildFormData(actor);
-      return this.http.post(this.apiUrl, formData)
-    }
+  public getByName(name: string): Observable<actorFilmDTO[]>{
+    const headers = new HttpHeaders('Content-type: application/json');
+    return this.http.post<actorFilmDTO[]>(`${this.apiUrl}/getByName`, JSON.stringify(name), {headers});
+  }
 
-    public update(id:number, actor: actorCreationDTO){
-      const formData = this.buildFormData(actor);
-      return this.http.put(this.apiUrl + '/' + id, formData)
-    }
+
+  public create(actor: actorCreationDTO){
+    const formData = this.buildFormData(actor);
+    return this.http.post(this.apiUrl, formData)
+  }
+
+  public update(id:number, actor: actorCreationDTO){
+    const formData = this.buildFormData(actor);
+    return this.http.put(this.apiUrl + '/' + id, formData)
+  }
 
   private buildFormData(actor: actorCreationDTO){
     const formData = new FormData();

@@ -1,4 +1,4 @@
 export interface MultipleSelectorModel {
-  key: string;
+  key: number;
   value: string;
 }

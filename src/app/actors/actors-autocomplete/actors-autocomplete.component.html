@@ -11,7 +11,7 @@
   </mat-form-field>
 
   <mat-autocomplete #auto (optionSelected)="optionSelected($event)">
-    <mat-option *ngFor="let option of actors" [value]="option">
+    <mat-option *ngFor="let option of actorsToShow" [value]="option">
       <img [src]="option.photo" /> {{option.name}}
     </mat-option>
   </mat-autocomplete>

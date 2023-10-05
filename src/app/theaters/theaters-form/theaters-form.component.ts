@@ -15,6 +15,9 @@ export class TheatersFormComponent implements OnInit {
   form: FormGroup;
 
   @Input()
+  errors: string[] = [];
+
+  @Input()
   model: theaterCreationDTO;
 
   @Output()
@@ -25,13 +28,13 @@ export class TheatersFormComponent implements OnInit {
   ngOnInit() {
     this.form = this.formBuilder.group({
       name: ['', {validators: [Validators.required], },],
-      latituden: ['', {validators: [Validators.required], },],
-      longituden: ['', {validators: [Validators.required], },],
+      latitude: ['', {validators: [Validators.required], },],
+      longitude: ['', {validators: [Validators.required], },],
   });
 
     if (this.model !== undefined) {
       this.form.patchValue(this.model)
-      this.initialLocation.push({latituden: this.model.latituden, longituden: this.model.longituden})
+      this.initialLocation.push({latitude: this.model.latitude, longitude: this.model.longitude})
     }
   }
 
