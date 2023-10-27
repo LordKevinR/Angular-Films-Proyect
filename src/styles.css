@@ -10,3 +10,7 @@ body {
 p, h1, h2, h3, h4, h5, ul, li {
   color: white;
 }
+
+img.leaflet-marker-icon.leaflet-zoom-animated.leaflet-interactive{
+  background-image: url(https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png);
+}

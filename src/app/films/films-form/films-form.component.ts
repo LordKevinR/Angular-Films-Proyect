@@ -27,15 +27,19 @@ export class FilmsFormComponent implements OnInit {
   @Input()
   noSelectedGenres: MultipleSelectorModel[];
 
+  @Input()
   selectedGenres: MultipleSelectorModel[] = [];
 
   @Input()
   noSelectedTheaters: MultipleSelectorModel[];
 
+  @Input()
   selectedTheaters: MultipleSelectorModel[] = [];
 
   @Input()
   selectedActors: actorFilmDTO[] = [];
+
+  changedImage = false;
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -72,11 +76,16 @@ export class FilmsFormComponent implements OnInit {
     });
     this.form.get('actors').setValue(actors);
 
+    if (!this.changedImage){
+      this.form.patchValue({'poster': null})
+    }
+
     this.OnSubmit.emit(this.form.value);
   }
 
   selectedFile(file: File) {
     this.form.get('poster').setValue(file);
+    this.changedImage = true;
   }
 }
 

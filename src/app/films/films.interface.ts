@@ -14,15 +14,33 @@ export interface FilmCreationDTO {
   actors: actorFilmDTO[];
 }
 export interface FilmDTO {
+  id: number;
   title: string;
   summary: string;
   inTheaters: boolean;
   releaseDate: Date;
   trailer: string;
   poster: string;
+  genres: genreDTO[];
+  actors: actorFilmDTO[];
+  theaters: theaterDTO[];
 }
 
 export interface FilmsPostGet {
   genres: genreDTO[];
   theaters: theaterDTO[];
+}
+
+export interface LandingPageDTO {
+  inTheaters: FilmDTO[];
+  nextReleases: FilmDTO[];
+}
+
+export interface FilmPutGet{
+  film: FilmDTO;
+  selectedGenres: genreDTO[];
+  noSelectedGenres: genreDTO[];
+  selectedTheaters: theaterDTO[];
+  noSelectedTheaters: theaterDTO[];
+  actors: actorFilmDTO[];
 }

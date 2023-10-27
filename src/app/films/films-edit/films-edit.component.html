@@ -1,3 +1,13 @@
 <h2>Edit Film</h2>
 
-<app-films-form (OnSubmit)="saveChanges($event)" [model]="model"></app-films-form>
+<app-films-form
+  [noSelectedGenres]="noSelectedGenres"
+  [selectedGenres]="selectedGenres"
+  [selectedTheaters]="selectedTheaters"
+  [noSelectedTheaters]="noSelectedTheaters"
+  [selectedActors]="selectedActors"
+  *ngIf="model"
+  (OnSubmit)="saveChanges($event)"
+  [model]="model"></app-films-form>
+
+<mat-spinner *ngIf="!model"></mat-spinner>

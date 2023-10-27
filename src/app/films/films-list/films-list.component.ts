@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FilmDTO } from '../films.interface';
 
 @Component({
   selector: 'app-films-list',
@@ -9,7 +10,7 @@ export class FilmsListComponent implements OnInit {
 
   constructor() {}
   @Input()
-  films;
+  films: FilmDTO[];
 
 
   ngOnInit(): void {

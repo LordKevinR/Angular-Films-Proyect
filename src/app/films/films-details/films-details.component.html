@@ -1,0 +1,76 @@
+<div class="m3" *ngIf="film">
+
+  <div>
+
+    <div class="image-name-genres">
+      <div class="image">
+        <span>
+          <img class="poster" [src]="film.poster" />
+        </span>
+      </div>
+
+      <div>
+        <h2 class="film-name">{{film.title}} ({{releaseDate.getFullYear()}})</h2>
+
+        <mat-chip-list>
+            <mat-chip
+            [routerLink]="['/films/search']"
+            [queryparams]="{genreId: genre.id}"
+            *ngFor="let genre of film.genres">
+              {{genre.name}}
+            </mat-chip>
+        </mat-chip-list>
+
+        <div class="summary">
+          <h3>Summary</h3>
+          <div>
+            <markdown [data]="film.summary" ngPreserveWhitespaces></markdown>
+          </div>
+        </div>
+
+        <div class="votes">
+          <p>{{releaseDate.toDateString()}} | Average: 0.0 | Your Vote: 0.0</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="trailer-actors">
+      <div *ngIf="film.trailer">
+        <h3 class="fs1 tc">Trailer</h3>
+
+        <iframe
+        width="560"
+        height="315"
+        [src]="trailerURL"
+        frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        ></iframe>
+      </div>
+
+      <span class="separator"></span>
+
+      <div class="actors-div">
+        <h3 class="fs1 tc">Actors</h3>
+        <div>
+          <div class="actors" *ngFor="let actor of film.actors">
+            <img class="actor-photo" [src]="actor.photo" />
+            <div class="actor-name-div">
+              <span class="actor-name">{{actor.name}}</span>
+              <span class="actor-name">{{actor.character}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="map">
+      <h3 class="fs1 tc">Available In The Following Theaters</h3>
+      <app-map [readonly]="true" [initialsLocations]="location"></app-map>
+    </div>
+
+  </div>
+
+</div>
+
+<mat-spinner *ngIf="!film"></mat-spinner>

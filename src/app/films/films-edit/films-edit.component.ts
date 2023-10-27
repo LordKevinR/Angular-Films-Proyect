@@ -1,24 +1,55 @@
-import { Component } from '@angular/core';
-import { FilmCreationDTO, FilmDTO } from '../films.interface';
+import { Component, OnInit } from '@angular/core';
+import { FilmCreationDTO, FilmDTO, FilmPutGet } from '../films.interface';
+import { FilmsService } from '../films.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MultipleSelectorModel } from 'src/app/utilities/multiple-selector/multipleSelectorModel';
+import { actorFilmDTO } from 'src/app/actors/actor';
 
 @Component({
   selector: 'app-films-edit',
   templateUrl: './films-edit.component.html',
   styleUrls: ['./films-edit.component.css']
 })
-export class FilmsEditComponent {
+export class FilmsEditComponent implements OnInit {
 
-  model: FilmDTO = {
-    title: 'SpiderMAn',
-    summary: 'Whats going on in the world',
-    inTheaters: true,
-    releaseDate: new Date(),
-    trailer: 'trailer klk',
-    poster: 'https://4.bp.blogspot.com/-m7qzhWsqRAY/XLSQM2nZ7nI/AAAAAAAAM_4/mPq4c-7UBkEpBMX-FAcgnVGP6TBlAWy_ACLcBGAs/s2560/marvel-spiderman-new-4k-6b-2048x2048.jpg'
+  constructor(private filmsService: FilmsService, private activatedRoute: ActivatedRoute, private router: Router) {}
+
+  model: FilmDTO;
+  selectedGenres: MultipleSelectorModel[];
+  noSelectedGenres: MultipleSelectorModel[];
+  selectedTheaters: MultipleSelectorModel[];
+  noSelectedTheaters: MultipleSelectorModel[];
+  selectedActors: actorFilmDTO[];
+
+  ngOnInit(): void {
+    this.activatedRoute.params.subscribe(params => {
+      this.filmsService.putGet(params.id)
+      .subscribe(filmPutGet => {
+        this.model = filmPutGet.film;
+
+        this.noSelectedGenres = filmPutGet.noSelectedGenres.map(genres => {
+          return <MultipleSelectorModel>{ key: genres.id, value: genres.name}
+        });
+
+        this.selectedGenres = filmPutGet.selectedGenres.map(genres => {
+          return <MultipleSelectorModel>{ key: genres.id, value: genres.name}
+        });
+
+        this.noSelectedTheaters = filmPutGet.noSelectedTheaters.map(theaters => {
+          return <MultipleSelectorModel>{ key: theaters.id, value: theaters.name}
+        });
+
+        this.selectedTheaters = filmPutGet.selectedTheaters.map(theaters => {
+          return <MultipleSelectorModel>{ key: theaters.id, value: theaters.name}
+        });
+
+        this.selectedActors = filmPutGet.actors;
+      })
+    })
   }
 
   saveChanges(film: FilmCreationDTO){
-    console.log(film);
-
+    this.filmsService.update(this.model.id, film)
+    .subscribe(() => this.router.navigate(['/film/' + this.model.id]))
   }
 }

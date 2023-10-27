@@ -6,16 +6,16 @@
 
       <div class="film-content" *ngFor="let film of films; let index = index">
 
-        <a>
+        <a [routerLink]="'/films/' +  film.id ">
           <img [src]="film.poster" alt="film poster">
         </a>
 
         <p>
-          <a>{{film.title}}</a>
+          <a [routerLink]="'/films/' +  film.id ">{{film.title}}</a>
         </p>
 
         <div>
-          <a mat-flat-button color="primary">Edit</a>
+          <a mat-flat-button color="primary" [routerLink]="'/films/edit/' + film.id ">Edit</a>
           <button mat-flat-button color="warn" type="button">Delete</button>
         </div>
 

@@ -1,0 +1,83 @@
+mat-chip-list{
+  display: flex;
+}
+
+mat-chip{
+  cursor: pointer;
+  margin-right: 0.2rem;
+}
+
+p, h1, h2, h3, h4, h5, span{
+  color: white;
+}
+
+.poster{
+  height: 30rem;
+}
+
+.image-name-genres{
+  display: flex;
+}
+
+.film-name{
+  font-size: 2.2rem;
+}
+
+.summary{
+  margin-top: 3rem;
+}
+
+.votes{
+  margin-top: 3rem;
+  font-size: 1.2rem;
+}
+
+.image{
+  margin-right: 2rem;
+}
+
+.m3{
+  margin: 3rem;
+}
+
+.actor-photo{
+  width: 50px;
+}
+
+.actors{
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.trailer-actors{
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 5rem;
+}
+
+.separator{
+  width: 1px;
+  background-color: gray;
+  border-radius: 10rem;
+}
+
+.fs1{
+  font-size: 1.5rem;
+}
+
+.tc{
+  text-align: center;
+}
+
+.actor-name-div{
+  font-size: 1.5rem;
+  display: flex;
+  margin-left: 2rem;
+  gap: 4rem;
+}
+
+.map{
+  margin-top: 3rem;
+}

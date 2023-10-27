@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter, OnInit, Input } from '@angular/core';
 import { tileLayer, latLng, LeafletMouseEvent, Marker, marker, icon } from 'leaflet';
-import { ILocation } from './location.interface';
+import { ILocation, ILocationWithMessage } from './location.interface';
 
 @Component({
   selector: 'app-map',
@@ -11,13 +11,24 @@ export class MapComponent implements OnInit {
 
 
   @Input()
-  initialsLocations: ILocation[] = [];
+  initialsLocations: ILocationWithMessage[] = [];
+
+  @Input()
+  readonly: boolean = false;
 
   @Output()
   selectedLocation: EventEmitter<ILocation> = new EventEmitter<ILocation>();
 
   ngOnInit(): void {
-    this.layers = this.initialsLocations.map(value => marker([value.latitude, value.longitude]));
+    this.layers = this.initialsLocations.map(value => {
+      let mark = marker([value.latitude, value.longitude])
+
+      if (value.message){
+        mark.bindPopup(value.message, {autoClose: false, autoPan: false});
+      }
+
+      return mark;
+    } );
   }
 
   options = {
@@ -31,20 +42,24 @@ export class MapComponent implements OnInit {
   layers: Marker<any>[] = [];
 
   handleClick(event: LeafletMouseEvent){
-    const latitude = event.latlng.lat;
-    const longitude = event.latlng.lng;
-    console.log({latitude, longitude});
 
-    this.layers = [];
-    this.layers.push(marker([latitude, longitude],{
-      icon: icon({
-        iconSize: [25, 41],
-        iconAnchor: [13, 41],
-        iconUrl: 'assets/marker-icon.png',
-        iconRetinaUrl: 'assets/marker-icon-2x.png',
-        shadowUrl: 'assets/marker-shadow.png'
-      })
-    }));
-    this.selectedLocation.emit({latitude, longitude});
+    if (!this.readonly){
+      const latitude = event.latlng.lat;
+      const longitude = event.latlng.lng;
+
+
+      this.layers = [];
+      this.layers.push(marker([latitude, longitude],{
+        icon: icon({
+          iconSize: [25, 41],
+          iconAnchor: [13, 41],
+          iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
+          iconRetinaUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
+          shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png'
+        })
+      }));
+      this.selectedLocation.emit({latitude, longitude});
+    }
+
   }
 }

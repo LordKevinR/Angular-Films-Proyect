@@ -4,3 +4,7 @@ div {
   height: 500px;
   margin: 0 auto;
 }
+
+.leaflet-default-icon-path {
+  background-image: url(https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png);
+}

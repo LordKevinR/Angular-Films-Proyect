@@ -13,6 +13,7 @@ import { FilmsFilterComponent } from './films/films-filter/films-filter.componen
 import { FilmsEditComponent } from './films/films-edit/films-edit.component';
 import { TheatersEditComponent } from './theaters/theaters-edit/theaters-edit.component';
 import { GenresEditComponent } from './genres/genres-edit/genres-edit.component';
+import { FilmsDetailsComponent } from './films/films-details/films-details.component';
 
 const routes: Routes = [
   {path: '', component: LandingPageComponent},
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path: 'films/create', component: FilmsCreateComponent},
   {path: 'films/edit/:id', component: FilmsEditComponent},
   {path: 'films/search', component: FilmsFilterComponent},
+  {path: 'films/:id', component: FilmsDetailsComponent},
   {path: '**', redirectTo: ''}
 ];
 
